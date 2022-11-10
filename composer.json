@@ -9,13 +9,14 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.7",
         "obiefy/api-response": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "krlove/eloquent-model-generator": "^2.0",
-        "laravel/pint": "^1.0",
+        "laravel/pint": "^1.2",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 use App\Repository\Contracts\DomicilioRepositoryInterface;
 use App\Models\Personal;
 use App\Models\Domicilio;
+
+
 class DomicilioController extends Controller
 {
 
     protected DomicilioRepositoryInterface $domicilioReposiInterface;
-  
-    function __construct(DomicilioRepositoryInterface $domicilioReposiInterface){
-    
-        $this->domicilioReposiInterface= $domicilioReposiInterface;
+
+    function __construct(DomicilioRepositoryInterface $domicilioReposiInterface)
+    {
+
+        $this->domicilioReposiInterface = $domicilioReposiInterface;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -25,17 +28,15 @@ class DomicilioController extends Controller
     {
 
         try {
-        
-            $data=
-            [
-                'domicilios'=>$this->domicilioReposiInterface->index($legajo->nlegajo_ps),
-                'personal'=>$legajo
-            ];
-            return  api()->ok(null,$data);
+            $data =
+                [
+                    'domicilios' => $this->domicilioReposiInterface->index($legajo->nlegajo_ps),
+                    'personal' => $legajo
+                ];
+            return  api()->ok(null, $data);
         } catch (\Throwable $th) {
-           return api()->error($th->getMessage());
+            return api()->error($th->getMessage());
         }
-       
     }
 
     /**
@@ -46,14 +47,13 @@ class DomicilioController extends Controller
      */
     public function store(Request $request)
     {
-        
-    
-      try {
-        return  api()->ok(null,$this->domicilioReposiInterface->store($request->all()));
-    } catch (\Throwable $th) {
-       return api()->error($th->getMessage());
-    }
 
+
+        try {
+            return  api()->ok(null, $this->domicilioReposiInterface->store($request->all()));
+        } catch (\Throwable $th) {
+            return api()->error($th->getMessage());
+        }
     }
 
     /**
@@ -65,9 +65,9 @@ class DomicilioController extends Controller
     public function show(Personal $legajo, Domicilio $domicilio)
     {
         try {
-            return  api()->ok(null,$this->domicilioReposiInterface->show($legajo->nlegajo_ps,$domicilio->id_dm));
+            return  api()->ok(null, $this->domicilioReposiInterface->show($legajo->nlegajo_ps, $domicilio->id_dm));
         } catch (\Throwable $th) {
-           return api()->error($th->getMessage());
+            return api()->error($th->getMessage());
         }
     }
 
