@@ -28,6 +28,7 @@ Route::post('/register', [RegisterController::class,'register']);
 Route::post('/login', [LoginController::class,'login']);
 
 
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
 Route::post('/logout',  [LoginController::class,'logout']);
@@ -35,14 +36,11 @@ Route::post('/logout',  [LoginController::class,'logout']);
     // Users api
 Route::get('/users/index', [UserController::class,'index']);
 Route::post('/user/store', [UserController::class,'store']);
-Route::post('/user/edit', [UserController::class,'edit']);
+Route::get('/user/show/{id}', [UserController::class,'show']);
 Route::put('/user/update/{id}', [UserController::class,'update']);
 
 // Roles api
-Route::get('/roles/index', [RolController::class,'index']);
+//Route::get('/roles/index', [RolController::class,'index']);
 
-// Domicilio ej api
-Route::get('domicilios/index/{legajo}',[DomicilioController::class,'index']);
-Route::get('domicilios/show/{legajo}/{domicilio}',[DomicilioController::class,'show']);
-Route::post('domicilios/store',[DomicilioController::class,'store']);
+
 });

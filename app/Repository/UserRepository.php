@@ -45,19 +45,20 @@ class UserRepository implements UserRepositoryInterface
         return $data;
     }
     public function logout($request)
-    {
-        $user = $request->user();
-        Auth::logout();
-        return $user;
+    { 
+        // Revoke the token that was used to authenticate the current request...
+        return auth('web')->logout();
+       
     }
     public function update($request, $user)
     {
        
         $user->fill($request);
         if ($user->isDirty()) {
-            return $user->save();
+            $user->save();
+            return $user;
         } else {
-            $response = ['estado' => 'noChanges', 'data' => $request->all(), 'message' => 'No se realizaron modificaciones'];
+            $response = ['estado' => 'noChanges', 'data' => $request, 'message' => 'No se realizaron modificaciones'];
             return $response;
         }
     }

@@ -18,8 +18,8 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-  
-        try {
+        
+    try {
             return api()->ok(null, $this->userRepositoryInterface->store((object)$request->all()));
         } catch (\Throwable $th) {
             return api()->error($th->getMessage());
